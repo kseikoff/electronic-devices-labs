@@ -1,0 +1,132 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left=25mm, top=25mm, right=25mm, bottom=25mm]{geometry}
+\usepackage{cmap}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+\usepackage{titlesec}
+\pagestyle{plain}
+\patchcmd{\tableofcontents}{\contentsname}{\centering\contentsname}{}{}
+\titleformat{\section}[block]{\normalfont\large\bfseries\centering}{}{0pt}{}
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries\centering}{}{0pt}{}
+\allowdisplaybreaks
+\graphicspath{{images/}}
+\usetikzlibrary{patterns}
+\definecolor{LightGray}{gray}{0.95}
+\definecolor{LightGray2}{gray}{0.7}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={contents setup},
+    pdfpagemode=FullScreen,
+}
+
+
+\begin{document}
+    \begin{titlepage}
+
+        \begin{center}
+        Федеральное государственное автономное образовательное учреждение высшего образования
+        «Национальный Исследовательский Университет ИТМО»
+        \vfill
+        
+        \includegraphics[width=0.3\textwidth]{itmo.png} % requires /images/itmo.png
+
+        {\large\bf ЛАБОРАТОРНАЯ РАБОТА №1}\\
+        {\large\bf ПРЕДМЕТ «ЭЛЕКТРОННЫЕ УСТРОЙСТВА СИСТЕМ УПРАВЛЕНИЯ»}\\
+        {\large\bf ТЕМА «ИССЛЕДОВАНИЕ РЕГУЛИРУЕМЫХ СХЕМ НА ТИРИСТОРАХ»}\\
+        Вариант №1
+        \vfill
+
+        \begin{flushright}
+            \begin{minipage}{.45\textwidth}
+            {
+                \hbox{Преподаватель:}
+                \hbox{Жданов В. А.}
+                \hbox{}
+                \hbox{Выполнил:}
+                \hbox{Румянцев А. А.}
+                \hbox{}
+                \hbox{Факультет: СУиР}
+                \hbox{Группа: R3341}
+                \hbox{Поток: ЭлУСУ R22 бак 1.2}
+            }
+            \end{minipage}
+        \end{flushright}
+        \vfill
+  
+        Санкт-Петербург\\
+        2025
+        \end{center}
+    \end{titlepage}
+    
+    \tableofcontents
+
+    \newpage
+    \section{Задание 1}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{scheme1.png}
+        \captionsetup{skip=0pt}
+        \caption{Подпись к изображению}
+        \label{fig:scheme1}
+    \end{figure}
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{scheme2.png}
+        \captionsetup{skip=0pt}
+        \caption{Подпись к изображению}
+        \label{fig:scheme2}
+    \end{figure}
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{scheme3.png}
+        \captionsetup{skip=0pt}
+        \caption{Подпись к изображению}
+        \label{fig:scheme3}
+    \end{figure}
+
+
+    \section{Задание 2}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{scheme4.png}
+        \captionsetup{skip=0pt}
+        \caption{Подпись к изображению}
+        \label{fig:scheme4}
+    \end{figure}
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{scheme5.png}
+        \captionsetup{skip=0pt}
+        \caption{Подпись к изображению}
+        \label{fig:scheme5}
+    \end{figure}
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{scheme6.png}
+        \captionsetup{skip=0pt}
+        \caption{Подпись к изображению}
+        \label{fig:scheme6}
+    \end{figure}
+\end{document}
