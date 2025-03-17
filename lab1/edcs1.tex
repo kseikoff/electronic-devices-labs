@@ -15,6 +15,7 @@
 \usepackage{xcolor}
 \usepackage{etoolbox}
 \usepackage{titlesec}
+\usepackage{array}
 \pagestyle{plain}
 \patchcmd{\tableofcontents}{\contentsname}{\centering\contentsname}{}{}
 \titleformat{\section}[block]{\normalfont\large\bfseries\centering}{}{0pt}{}
@@ -83,6 +84,18 @@
         \caption{Подпись к изображению}
         \label{fig:scheme1}
     \end{figure}
+
+
+    \subsection{Вых}
+    \begin{center}
+    \begin{tabular}{ | m{4em} | m{1.5cm}| m{1.5cm} | m{1.5cm} | m{1.5cm} | m{1.5cm} | } 
+    \hline
+    Угол $\alpha$& 30 & 60 & 90 &120 &150 \\ 
+    \hline
+    $U_{out}$& 27.563 & 22.152 & 14.74 &7.3324 &1.9308\\ 
+    \hline
+    \end{tabular}
+    \end{center}
 
 
     \begin{figure}[H]
@@ -224,6 +237,18 @@
     \end{figure}
 
 
+    \subsection{Вых}
+    \begin{center}
+        \begin{tabular}{ | m{4em} | m{1.5cm}| m{1.5cm} | m{1.5cm} | m{1.5cm} | m{1.5cm} | m{1.5cm} | m{1.5cm} | } 
+        \hline
+        $R,k$& 10 & 60 & 110 &160 &210 &260 &300 \\ 
+        \hline
+        $U_{out}$& 0.0263 & 0.3374 & 1.2721 &2.731 &4.6158 &7.8872 &3.2499\\ 
+        \hline
+    \end{tabular}
+    \end{center}
+
+
     \begin{figure}[H]
         \centering
         \includegraphics[scale=0.45]{R2.png}
@@ -267,4 +292,8 @@
         \caption{Подпись к изображению}
         \label{fig:R2_L20m_C45u}
     \end{figure}
+
+
+    \section{Вывод}
+    ...
 \end{document}
