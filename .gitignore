@@ -8,4 +8,5 @@
 *.synctex(busy)
 *.asv
 *.slx.autosave
+*.raw
 slprj
