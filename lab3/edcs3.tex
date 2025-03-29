@@ -1,0 +1,102 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left=25mm, top=25mm, right=25mm, bottom=25mm]{geometry}
+\usepackage{cmap}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+\usepackage{titlesec}
+\usepackage{array}
+\pagestyle{plain}
+\patchcmd{\tableofcontents}{\contentsname}{\centering\contentsname}{}{}
+\titleformat{\section}[block]{\normalfont\large\bfseries\centering}{}{0pt}{}
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries\centering}{}{0pt}{}
+\allowdisplaybreaks
+\graphicspath{{src/images/}}
+\usetikzlibrary{patterns}
+\definecolor{LightGray}{gray}{0.95}
+\definecolor{LightGray2}{gray}{0.7}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={contents setup},
+    pdfpagemode=FullScreen,
+}
+
+
+\begin{document}
+    \begin{titlepage}
+
+        \begin{center}
+        Федеральное государственное автономное образовательное учреждение высшего образования
+        «Национальный Исследовательский Университет ИТМО»
+        \vfill
+        
+        \includegraphics[width=0.3\textwidth]{itmo.png} % requires /src/images/itmo.png
+
+        {\large\bf ЛАБОРАТОРНАЯ РАБОТА №3}\\
+        {\large\bf ПРЕДМЕТ «ЭЛЕКТРОННЫЕ УСТРОЙСТВА СИСТЕМ УПРАВЛЕНИЯ»}\\
+        {\large\bf ТЕМА «ОПЕРАЦИОННЫЙ УСИЛИТЕЛЬ В ОСНОВНЫХ СХЕМАХ ВКЛЮЧЕНИЯ»}\\
+        Вариант №11
+        \vfill
+
+        \begin{flushright}
+            \begin{minipage}{.45\textwidth}
+            {
+                \hbox{Преподаватель:}
+                \hbox{Жданов В. А.}
+                \hbox{}
+                \hbox{Выполнил:}
+                \hbox{Румянцев А. А.}
+                \hbox{}
+                \hbox{Факультет: СУиР}
+                \hbox{Группа: R3341}
+                \hbox{Поток: ЭлУСУ R22 бак 1.2}
+            }
+            \end{minipage}
+        \end{flushright}
+        \vfill
+  
+        Санкт-Петербург\\
+        2025
+        \end{center}
+    \end{titlepage}
+    
+    \tableofcontents
+
+    \newpage
+    \section{Цель работы}
+    Цель работы -- изучение характеристик операционного усилителя
+    (ОУ) в различных режимах работы, исследование ОУ в различных схемах включения.
+
+    
+    \section{Таблица 1. Исходные данные}
+    Обозначения: $p$ -- коэффициент усиления, $K_1$ и $K_2$ для неинвертирующего сумматора,
+    $f_{i,d}$ -- рабочая частота схемы интегратора, дифференциатора
+    \begin{center}
+        \begin{tabular}{ | m{4em} | m{4em}| m{4em} | m{4em} | m{4em} | } 
+        \hline
+        ОУ& $p$ &$K_1$ &$K_2$ &$f_{i,d}$, кГц\\ 
+        \hline
+        LT1037& 8 & 1.5 &3.5 &1\\ 
+        \hline
+        \end{tabular}
+    \end{center}
+
+
+    \section{Исследование дифференциального усилителя}
+    Соберем схему усилителя с дифференциальным входом на ОУ
+    для заданного значения коэффициента усиления $p$ в таблице 1.
+    В качестве резистора обратной связи используем резистор номиналом 10 кОм.
+\end{document}
