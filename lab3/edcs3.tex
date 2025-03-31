@@ -100,7 +100,7 @@
     Соберем схему усилителя с дифференциальным входом на ОУ
     для заданного значения коэффициента усиления $K_u$ в таблице 1.
     В качестве резистора обратной связи используем резистор номиналом 10 кОм.
-    Запитываем ОУ на 15В. Посчитаем параметры схемы: R4=R2=10кОм, R1=R3, тогда
+    Запитываем ОУ на 15 В. Посчитаем параметры схемы: R4=R2=10кОм, R1=R3, тогда
     $$
     K_u=\dfrac{R_2}{R_1}=\dfrac{R_4}{R_3},\ 8=\dfrac{10000}{R_1}\Rightarrow R_1=R_3=\dfrac{10000}{8}=1250\text{ Ом}
     $$
@@ -210,7 +210,7 @@
         \end{tabular}
     \end{center}
     Как видим экспериментальные и теоретические значения почти совпали.
-    При приближении разности $U_1,U_2$ к $U_{1,2\,\text{крит.}}=10/8=1.25$
+    При приближении разности $U_1,U_2$ к $U_{1,2\,\text{крит.}}=10/8=1.25$ В
     экспериментальные значения начинают отставать аналогично заданию с ДУ.
 
 
@@ -310,6 +310,199 @@
         \caption{Частотная характеристика реального интегратора}
         \label{fig:3task_real_int}
     \end{figure}
-    \noindent По графикам с помощью курсора определим частоту среза как отклонение на $-3$ дБ от начальных $x$ дБ.
-    Таким образом, для идеального интегратора частота среза 46.853996 Гц, для реального 1.7163194 Гц.
+    \noindent Посчитаем частоту среза
+    $$
+    f_{\text{срез.}}=\dfrac{1}{2\pi R_2 C_1}=\dfrac{1}{2\pi\cdot10^8\cdot1.6\cdot10^{-9}}=0.9947183943\text{ Гц}
+    $$
+    То есть реальный интегратор перестает быть идеальным уже около 1 Гц, дальше ведет себя ближе к обычному усилителю.
+
+
+    \subsection{Вид выходного сигнала при разных входных сигналах}
+    Проверим экспериментально вид выходного сигнала для следующих
+    входных сигналов: 
+    \begin{itemize}
+        \item синусоидальный SINE(0.1 0.1 1k)
+        \item треугольный PWL(0ms 0V 0.25ms 1V 0.5ms 0V 0.75ms -1V 1ms 0V)
+        \item прямоугольный PULSE(-1 1 0 0ns 0ns 0.5ms 1ms)
+    \end{itemize}
+    Результаты представлены на рис. \ref{fig:3task_ideal_sine}--\ref{fig:3task_real_rect}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_ideal_sine.png}
+        \captionsetup{skip=0pt}
+        \caption{Синусоидальный сигнал, идеальный интегратор}
+        \label{fig:3task_ideal_sine}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_real_sine.png}
+        \captionsetup{skip=0pt}
+        \caption{Синусоидальный сигнал, реальный интегратор}
+        \label{fig:3task_real_sine}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_ideal_triangle.png}
+        \captionsetup{skip=0pt}
+        \caption{Треугольный сигнал, идеальный интегратор}
+        \label{fig:3task_ideal_triangle}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_real_triangle.png}
+        \captionsetup{skip=0pt}
+        \caption{Треугольный сигнал, реальный интегратор}
+        \label{fig:3task_real_triangle}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_ideal_rect.png}
+        \captionsetup{skip=0pt}
+        \caption{Прямоугольный сигнал, идеальный интегратор}
+        \label{fig:3task_ideal_rect}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_real_rect.png}
+        \captionsetup{skip=0pt}
+        \caption{Прямоугольный сигнал, реальный интегратор}
+        \label{fig:3task_real_rect}
+    \end{figure}
+    \noindent Синусоидальный сигнал превратился в косинусоидальный выход, треугольный в параболический,
+    прямоугольный в треугольный. Результаты подтверждают, что ОУ неинвертирующий.
+
+
+    \section{Дифференциатор на ОУ}
+    Соберем схему идеального дифференциатора на ОУ (см. рис. \ref{fig:scheme10}). Определим значения
+    параметров элементов схемы. Зададим значение резистора в цепи
+    обратной связи $R_2=50$ кОм. Вычислим соответствующее значение емкости
+    при $f_d=1$ кГц
+    $$
+    C=\dfrac{1}{2\pi f_d R_2}=\dfrac{1}{2\pi\cdot10^3\cdot50\cdot10^3}=3.2\text{ нФ}
+    $$
+    Пусть минимальная рабочая частота работы дифференциатора
+    (частота, при которой коэффициент усиления равен единице)
+    $$
+    f_{min}=\dfrac{f_d}{10}=\dfrac{10^3}{10}=100\text{ Гц}
+    $$
+
+
+    Соберем также схему реального операционного усилителя (см. рис. \ref{fig:scheme11}). Рассчитаем параметры схемы.
+    Пусть минимальная рабочая частота дифференциатора также будет в 10 раз меньше
+    рабочей частоты $f_{min}=f_d/10=100$ Гц. Вычислим значение емкости конденсатора $C_1$
+    $$
+    C_1\geq\dfrac{1}{2\pi R_2f_{min}}=\dfrac{1}{2\pi\cdot50\cdot10^3\cdot10^2}=31.8\text{ нФ}
+    $$
+    Выберем максимальную частоту дифференциатора в 10 раз выше рабочей частоты
+    $$
+    f_{max}=10f_d=10\cdot10^3=10\text{ кГц}
+    $$
+    Вычислим значение сопротивления резистора $R_1$
+    $$
+    R_1\leq\dfrac{1}{2\pi C_1f_{max}}=\dfrac{1}{2\pi\cdot31.8\cdot10^{-9}\cdot10^4}=500.4872424273\text{ Ом}
+    $$
+    Примем $R_1=500$ Ом.
+
+
+    \subsection{Схема идеального дифференциатора на ОУ}
+    Построим схему идеального дифференциатора с учетом всех вычислений
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme10.png}
+        \captionsetup{skip=0pt}
+        \caption{Идеальный дифференциатор на ОУ}
+        \label{fig:scheme10}
+    \end{figure}
+
+
+    \subsection{Схема реального дифференциатора на ОУ}
+    Построим схему реального дифференциатора с учетом всех вычислений
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme11.png}
+        \captionsetup{skip=0pt}
+        \caption{Реальный дифференциатор на ОУ}
+        \label{fig:scheme11}
+    \end{figure}
+
+
+    \subsection{Частотная характеристика дифференциатора}
+    Подадим на вход гармонический сигнал, не искажающий выходной сигнал (AC 0.1).
+    Результаты для идеального дифференциатора представлены на рис. \ref{fig:4task_ideal_diff}, для
+    реального \ref{fig:4task_real_diff}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{4task_ideal_diff.png}
+        \captionsetup{skip=0pt}
+        \caption{Частотная характеристика идеального дифференциатора}
+        \label{fig:4task_ideal_diff}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{4task_real_diff.png}
+        \captionsetup{skip=0pt}
+        \caption{Частотная характеристика реального дифференциатора}
+        \label{fig:4task_real_diff}
+    \end{figure}
+    \noindent Посчитаем частоту среза ($C_2=C=3.2$ нФ)
+    $$
+    f_{\text{срез.}}=\dfrac{1}{2\pi C_2R_2}=\dfrac{1}{2\pi\cdot3.2\cdot10^{-9}\cdot50\cdot10^3}=994.7183943243\text{ Гц}\simeq 1\text{ кГц}
+    $$
+    То есть реальный дифференциатор перестает быть идеальным около 1 кГц, дальше его эффективность снижается.
+
+
+    \subsection{Вид выходного сигнала при разных входных сигналах}
+    Проверим экспериментально вид выходного сигнала аналогично пункту с интегратором.
+    Результаты представлены на рис. \ref{fig:4task_ideal_sine}--\ref{fig:4task_real_rect}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{4task_ideal_sine.png}
+        \captionsetup{skip=0pt}
+        \caption{Синусоидальный сигнал, идеальный дифференциатор}
+        \label{fig:4task_ideal_sine}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{4task_real_sine.png}
+        \captionsetup{skip=0pt}
+        \caption{Синусоидальный сигнал, реальный дифференциатор}
+        \label{fig:4task_real_sine}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{4task_ideal_triangle.png}
+        \captionsetup{skip=0pt}
+        \caption{Треугольный сигнал, идеальный дифференциатор}
+        \label{fig:4task_ideal_triangle}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{4task_real_triangle.png}
+        \captionsetup{skip=0pt}
+        \caption{Треугольный сигнал, реальный дифференциатор}
+        \label{fig:4task_real_triangle}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{4task_ideal_rect.png}
+        \captionsetup{skip=0pt}
+        \caption{Прямоугольный сигнал, идеальный дифференциатор}
+        \label{fig:4task_ideal_rect}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{4task_real_rect.png}
+        \captionsetup{skip=0pt}
+        \caption{Прямоугольный сигнал, реальный дифференциатор}
+        \label{fig:4task_real_rect}
+    \end{figure}
+
+
+    \section{Вывод}
+    В данной лабораторной работе были изучены различные схемы на операционных
+    усилителях. Были исследованы дифференциальный усилитель, инвертирующий и
+    неинвертирующий сумматоры, интегратор и дифференциатор. Для некоторых случаев
+    было измерено выходное напряжение для различных входных напряжений.
+    Были построены графики выходного напряжения при различных входных напряжениях, а
+    для некоторых случаев были получены графики частотных характеристик сигнала.
 \end{document}
