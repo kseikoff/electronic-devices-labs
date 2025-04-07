@@ -145,15 +145,52 @@
     $$
 
 
-    \subsection{Схема параметрического стабилизатора}
-    Соберем схему параметрического стабилизатора с учетом наших расчетов.
+    \subsection{Схема параметрического стабилизатора постоянного напряжения}
+    Соберем схему параметрического стабилизатора постоянного напряжения с учетом наших расчетов.
     Конденсатор в расчетах не участвовал (со временем перестанет проводить ток)
     -- он нужен для сглаживания пульсаций (фильтр шумов)
     \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.22]{scheme1.png}
+        \includegraphics[scale=0.22]{1task_scheme_AC.png}
         \captionsetup{skip=0pt}
-        \caption{Схема параметрического стабилизатора}
-        \label{fig:scheme1}
+        \caption{Схема параметрического стабилизатора постоянного напряжения}
+        \label{fig:1task_scheme_AC}
     \end{figure}
+
+
+    \subsection{Влияние сопротивления нагрузки на работу стабилизатора}
+    Проверим выходное напряжение цепи и ток на стабилизаторе при постоянном входном напряжении
+    16 В и различных сопротивлениях нагрузки. V(n001)$\equiv U_{\text{вх.}}$, V(n002)$\equiv U_{\text{вых.}}$,
+    I(D2)$\equiv I_{\text{ст.}}$
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_R1k.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $R_{\text{н.}}=1000$ Ом; $U_{\text{вых. ср.}}=8.1884$ В}
+        \label{fig:1task_R1k}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_R3_5k.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $R_{\text{н.}}=3500$ Ом; $U_{\text{вых. ср.}}=8.1933$ В}
+        \label{fig:1task_R3_5k}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_R10k.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $R_{\text{н.}}=10000$ Ом; $U_{\text{вых. ср.}}=8.1941$ В}
+        \label{fig:1task_R10k}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_R100k.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $R_{\text{н.}}=100000$ Ом; $U_{\text{вых. ср.}}=8.1945$ В}
+        \label{fig:1task_R100k}
+    \end{figure}
+    \noindent Выходное напряжение с увеличением сопротивления нагрузки немного увеличивается,
+    при этом стабилитрон потребляет больше тока. Максимальное значение тока на стабилитроне в 18 мА
+    не было достигнуто (при $R_{\text{н.}}=100000$ Ом получили $I_{\text{ст.}}\approx10.243$ мА).
 \end{document}
