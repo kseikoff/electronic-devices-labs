@@ -193,4 +193,105 @@
     \noindent Выходное напряжение с увеличением сопротивления нагрузки немного увеличивается,
     при этом стабилитрон потребляет больше тока. Максимальное значение тока на стабилитроне в 18 мА
     не было достигнуто (при $R_{\text{н.}}=100000$ Ом получили $I_{\text{ст.}}\approx10.243$ мА).
+
+
+    \subsection{Скачкообразное изменение нагрузки}
+    Подадим скачкообразную нагрузку PULSE(16 18 5m 1u 1u 10m 10m). Входное напряжение
+    представлено на рис. \ref{fig:1task_rect_input0}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_rect_input0.png}
+        \captionsetup{skip=0pt}
+        \caption{Скачкообразная нагрузка с 16 В до 18 В}
+        \label{fig:1task_rect_input0}
+    \end{figure}
+    При таком входном напряжении на выходе получаем
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_rect.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при скачкообразной нагрузке}
+        \label{fig:1task_rect}
+    \end{figure}
+    \noindent Скачок напряжения на выходе значительно меньше скачка на входе. Стабилизатор
+    удержал напряжение в районе 8.2 В.
+
+
+    \subsection{Нагрузки разного вида при скачкообразном изменении входного напряжения}
+    Снимем осциллограммы выходных напряжений стабилизатора при скачкообразном
+    изменении входного напряжения для нагрузок разного вида. На схеме на рис. \ref{fig:1task_scheme_AC}
+    представлена активно-емкостная нагрузка. Для начала построим схему только лишь \textbf{активной} нагрузки
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{1task_scheme_A.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема параметрического стабилизатора: активная нагрузка}
+        \label{fig:1task_scheme_A}
+    \end{figure}
+    \noindent Подадим на вход скачкообразный сигнал PULSE(16 18 5m 1u 1u 1m 10m), который
+    представлен на рис. \ref{fig:1task_rect_input}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_rect_input.png}
+        \captionsetup{skip=0pt}
+        \caption{Повторяющаяся скачкообразная нагрузка с 16 В до 18 В}
+        \label{fig:1task_rect_input}
+    \end{figure}
+    Посмотрим выходное напряжение при \textbf{активной} скачкообразной нагрузке
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_rect_A.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при активной скачкообразной нагрузке}
+        \label{fig:1task_rect_A}
+    \end{figure}
+    \noindent Посмотрим выходное напряжение при \textbf{активно-емкостной} нагрузке. Схема
+    была представлена на рис. \ref{fig:1task_scheme_AC}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_rect_AC.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при активно-емкостной скачкообразной нагрузке}
+        \label{fig:1task_rect_AC}
+    \end{figure}
+    \noindent Построим схему для проверки \textbf{активно-индуктивной} нагрузки. Зададим
+    значение индуктивности в 1 Гн
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{1task_scheme_AL.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема параметрического стабилизатора: активно-индуктивная нагрузка}
+        \label{fig:1task_scheme_AL}
+    \end{figure}
+    \noindent Посмотрим выходное напряжение при \textbf{активно-индуктивной} нагрузке
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_rect_AL.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при активно-индуктивной скачкообразной нагрузке}
+        \label{fig:1task_rect_AL}
+    \end{figure}
+    \noindent Построим схему для проверки \textbf{активно-индуктивно-емкостной} нагрузки. Зададим
+    значение индуктивности в 1 Гн
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{1task_scheme_ALC.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема параметрического стабилизатора: активно-индуктивно-емкостная нагрузка}
+        \label{fig:1task_scheme_ALC}
+    \end{figure}
+    \noindent Посмотрим выходное напряжение при \textbf{активно-индуктивно-емкостной} нагрузке
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_rect_ALC.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при активно-индуктивно-емкостной скачкообразной нагрузке}
+        \label{fig:1task_rect_ALC}
+    \end{figure}
+    \noindent Результат лучше всего получился на рис. \ref{fig:1task_rect_ALC}. При увеличении
+    емкости конденсатора пульсации будут сглаживаться еще больше.
+
+
+    \section{Исследование однотранзисторного последовательного линейного стабилизатора}
+    ...
 \end{document}
