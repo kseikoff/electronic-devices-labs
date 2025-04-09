@@ -4,6 +4,6 @@ R, Ohm   U_out avg, V
 10k      8.1941
 100k     8.1945
 
-Pulse
+Pulse, V
 8.193294 before
 8.194724 after

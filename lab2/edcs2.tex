@@ -104,7 +104,7 @@
     мощность $P_\text{ст.}=0.15$ Вт, дифференциальное сопротивление $r_{\text{ст.}}=30$ Ом
     
     
-    \subsection{Расчет схемы}
+    \subsection{Расчет параметров схемы}
     Рассчитаем максимальный ток, текущий
     через стабилитрон
     $$
@@ -161,7 +161,8 @@
     \subsection{Влияние сопротивления нагрузки на работу стабилизатора}
     Проверим выходное напряжение цепи и ток на стабилизаторе при постоянном входном напряжении
     16 В и различных сопротивлениях нагрузки. V(n001)$\equiv U_{\text{вх.}}$, V(n002)$\equiv U_{\text{вых.}}$,
-    I(D2)$\equiv I_{\text{ст.}}$
+    I(D2)$\equiv I_{\text{ст.}}$. Результаты представлены на рис.
+    \ref{fig:1task_R1k}--\ref{fig:1task_R100k}
     \begin{figure}[H]
         \centering
         \includegraphics[scale=0.46]{1task_R1k.png}
@@ -293,7 +294,8 @@
 
 
     \section{Исследование однотранзисторного последовательного линейного стабилизатора}
-    Выполним расчеты параметров схемы. Определимся со стабилизатором
+    \subsection{Выбор стабилитрона}
+    Определимся со стабилизатором
     $$
     U_{\text{ст.}}=U_{\text{вых.}}+0.6=8+0.6=8.6\text{ В}
     $$
@@ -301,19 +303,180 @@
     Сравним по разнице между возможным и желаемым напряжениями на стабилизаторе и возьмем
     напряжение $U_{\text{ст.}}$, при котором разница наименьшая
     $$
-    9.1-8.6=0.5,\ 8.2-8.6=-0.4,\ |-0.4|<|0.5|\Rightarrow\text{ берем EDZV8.2B}
+    9.1-8.6=0.5,\ 8.2-8.6=-0.4,
+    $$
+    $$
+    |-0.4|<|0.5|\Rightarrow\text{ берем EDZV8.2B}
     $$
     Пересчитаем выходное напряжение
     $$
     U_{\text{вых.}}=U_{\text{ст.}}-0.6=8.2-0.6=7.6\text{ В}
     $$
-    В теории теряем 5\% от желаемых 8 В. Далее рассчитаем сопротивление на резисторе.
-    Для транзистора 2N3055 выберем $h_{\text{FE мин.}}$: $$\,20\leq h_{\text{FE}}\leq70\Rightarrow h_{\text{FE мин.}}=20$$
-    Теперь посчитаем $R$
+    В теории теряем 5\% от желаемых 8 В.
+    
+    
+    \subsection{Расчет параметров схемы}
+    Далее рассчитаем сопротивление на резисторе.
+    Для транзистора 2N3055 выберем коэффициент передачи тока базы $h_{\text{FE мин.}}$
+    $$\,20\leq h_{\text{FE}}\leq70\Rightarrow h_{\text{FE мин.}}=20$$
+    Определим минимальное входное напряжение
     $$
     U_{\text{вх. мин.}}>U_{\text{вых.}}+2.5=7.6+2.5=10.1\Rightarrow U_{\text{вх. мин.}}=11\text{ В},
     $$
+    Рассчитаем максимальный выходной ток стабилизатора
     $$
-    R\approx\dfrac{U_{\text{вх. мин.}}h_{\text{FE мин.}}}{1.2I_{\text{вых. макс.}}}=\dfrac{11\cdot20}{1.2\cdot I}
+    I_{\text{вых. макс.}}=h_{\text{FE}}\cdot I_{\text{б.}},
     $$
+    $$
+    I_{\text{б. макс.}}\approx I_{\text{ст. макс.}}=\dfrac{P_{\text{ст.}}}{U_{\text{ст.}}}=\dfrac{0.15}{7.6}=0.0197368421\text{ А},
+    $$
+    $$
+    I_{\text{вых. макс.}}=20\cdot0.02=0.394736842\text{ А}
+    $$
+    Теперь посчитаем $R$
+    $$
+    R\approx\dfrac{U_{\text{вх. мин.}}h_{\text{FE мин.}}}{1.2I_{\text{вых. макс.}}}=\dfrac{11\cdot20}{1.2\cdot0.395}=464.4444445683\text{ Ом}
+    $$
+
+
+    \subsection{Коэффициент стабилизации}
+    Определим коэффициент стабилизации по формуле
+    $$
+    k_{\text{ст.}}=\dfrac{\Delta U_{\text{вх.}}}{U_{\text{вх.}}}\div\dfrac{\Delta U_{\text{вых.}}}{U_{\text{вых.}}}\bigg|_{\text{Rн=const.}}
+    $$
+    Значения $\Delta U_{\text{вых.}}$ возьмем с моделирования схемы, представленной на рис. \ref{fig:2task_scheme_AC}, в LTspice
+    при $U_{\text{вх. 1}}=16$ В, $U_{\text{вх. 2}}=17$ В
+    $$
+    k_{\text{ст.}}=\dfrac{17-16}{16}\div\dfrac{7.9021-7.9013}{7.6}=593.7499999994
+    $$
+
+
+    \subsection{Схема однотранзисторного последовательного линейного стабилизатора постоянного напряжения}
+    Построим схему однотранзисторного последовательного линейного стабилизатора постоянного напряжения, учитывая проведенные ранее расчеты
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{2task_scheme_AC.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема однотранзисторного последовательного линейного стабилизатора постоянного напряжения}
+        \label{fig:2task_scheme_AC}
+    \end{figure}
+
+
+    \subsection{Влияние сопротивления нагрузки на работу стабилизатора}
+    Проверим выходное напряжение цепи и ток на стабилизаторе при постоянном
+    входном напряжении 16 В и различных сопротивлениях нагрузки. V(n001)$\equiv U_{\text{вх.}}$,
+    V(n002)$\equiv U_{\text{вых.}}$, I(D2)$\equiv I_{\text{ст.}}$. Результаты представлены на рис.
+    \ref{fig:2task_R1k}--\ref{fig:2task_R100k}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{2task_R1k.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $R_{\text{н.}}=1000$ Ом; $U_{\text{вых. ср.}}=7.8687$ В}
+        \label{fig:2task_R1k}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{2task_R3_5k.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $R_{\text{н.}}=3500$ Ом; $U_{\text{вых. ср.}}=7.9013$ В}
+        \label{fig:2task_R3_5k}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{2task_R10k.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $R_{\text{н.}}=10000$ Ом; $U_{\text{вых. ср.}}=7.9284$ В}
+        \label{fig:2task_R10k}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{2task_R100k.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $R_{\text{н.}}=100000$ Ом; $U_{\text{вых. ср.}}=7.9878$ В}
+        \label{fig:2task_R100k}
+    \end{figure}
+    \noindent Выходное напряжение с увеличением сопротивления нагрузки немного увеличивается,
+    при этом стабилитрон потребляет немного больше тока (в сравнении с результатами для первого задания, представленными
+    на рис. \ref{fig:1task_R1k}--\ref{fig:1task_R100k}, увеличение потребления тока значительно меньше).
+
+
+    \subsection{Скачкообразное изменение нагрузки}
+    Выполним моделирование скачкообразного изменения нагрузки аналогично первому заданию
+    (входное напряжение представлено на рис. \ref{fig:1task_rect_input0})
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{2task_rect.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при скачкообразной нагрузке}
+        \label{fig:2task_rect}
+    \end{figure}
+    \noindent Скачок напряжения на выходе значительно меньше скачка на входе. Стабилизатор
+    удержал напряжение в районе 8 В.
+
+
+    \subsection{Нагрузки разного вида при скачкообразном изменении входного напряжения}
+    Снимем осциллограммы выходных напряжений стабилизатора при скачкообразном
+    изменении входного напряжения для нагрузок разного вида. На схеме на рис. \ref{fig:2task_scheme_AC}
+    представлена активно-емкостная нагрузка. Для начала построим схему только лишь \textbf{активной} нагрузки
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{2task_scheme_A.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема параметрического стабилизатора: активная нагрузка}
+        \label{fig:2task_scheme_A}
+    \end{figure}
+    \noindent Подадим на вход скачкообразный сигнал аналогично первому заданию (см рис. \ref{fig:1task_rect_input}).
+    Посмотрим выходное напряжение при \textbf{активной} скачкообразной нагрузке
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{2task_rect_A.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при активной скачкообразной нагрузке}
+        \label{fig:2task_rect_A}
+    \end{figure}
+    \noindent Посмотрим выходное напряжение при \textbf{активно-емкостной} нагрузке. Схема
+    была представлена на рис. \ref{fig:2task_scheme_AC}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{2task_rect_AC.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при активно-емкостной скачкообразной нагрузке}
+        \label{fig:2task_rect_AC}
+    \end{figure}
+    \noindent Построим схему для проверки \textbf{активно-индуктивной} нагрузки. Зададим
+    значение индуктивности в 100 Гн
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{2task_scheme_AL.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема параметрического стабилизатора: активно-индуктивная нагрузка}
+        \label{fig:2task_scheme_AL}
+    \end{figure}
+    \noindent Посмотрим выходное напряжение при \textbf{активно-индуктивной} нагрузке
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{2task_rect_AL.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при активно-индуктивной скачкообразной нагрузке}
+        \label{fig:2task_rect_AL}
+    \end{figure}
+    \noindent Построим схему для проверки \textbf{активно-индуктивно-емкостной} нагрузки. Зададим
+    значение индуктивности в 100 Гн
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{2task_scheme_ALC.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема параметрического стабилизатора: активно-индуктивно-емкостная нагрузка}
+        \label{fig:2task_scheme_ALC}
+    \end{figure}
+    \noindent Посмотрим выходное напряжение при \textbf{активно-индуктивно-емкостной} нагрузке
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{2task_rect_ALC.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при активно-индуктивно-емкостной скачкообразной нагрузке}
+        \label{fig:2task_rect_ALC}
+    \end{figure}
+    \noindent Результат лучше всего получился на рис. \ref{fig:2task_rect_ALC} и \ref{fig:2task_rect_AC}.
+    При увеличении емкости конденсатора пульсации будут сглаживаться еще больше.
 \end{document}
