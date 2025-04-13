@@ -1,0 +1,393 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left=25mm, top=25mm, right=25mm, bottom=25mm]{geometry}
+\usepackage{cmap}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+\usepackage{titlesec}
+\usepackage{array}
+\pagestyle{plain}
+\patchcmd{\tableofcontents}{\contentsname}{\centering\contentsname}{}{}
+\titleformat{\section}[block]{\normalfont\large\bfseries\centering}{}{0pt}{}
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries\centering}{}{0pt}{}
+\allowdisplaybreaks
+\graphicspath{{src/images/}}
+\usetikzlibrary{patterns}
+\definecolor{LightGray}{gray}{0.95}
+\definecolor{LightGray2}{gray}{0.7}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={contents setup},
+    pdfpagemode=FullScreen,
+}
+
+
+\begin{document}
+    \begin{titlepage}
+
+        \begin{center}
+        Федеральное государственное автономное образовательное учреждение высшего образования
+        «Национальный Исследовательский Университет ИТМО»
+        \vfill
+        
+        \includegraphics[width=0.3\textwidth]{itmo.png} % requires /src/images/itmo.png
+
+        {\large\bf ЛАБОРАТОРНАЯ РАБОТА №4}\\
+        {\large\bf ПРЕДМЕТ «ЭЛЕКТРОННЫЕ УСТРОЙСТВА СИСТЕМ УПРАВЛЕНИЯ»}\\
+        {\large\bf ТЕМА «ОПЕРАЦИОННЫЙ УСИЛИТЕЛЬ В СПЕЦИАЛИЗИРОВАННЫХ СХЕМАХ»}\\
+        Вариант №10
+        \vfill
+
+        \begin{flushright}
+            \begin{minipage}{.45\textwidth}
+            {
+                \hbox{Преподаватель:}
+                \hbox{Жданов В. А.}
+                \hbox{}
+                \hbox{Выполнил:}
+                \hbox{Румянцев А. А.}
+                \hbox{}
+                \hbox{Факультет: СУиР}
+                \hbox{Группа: R3341}
+                \hbox{Поток: ЭлУСУ R22 бак 1.2}
+            }
+            \end{minipage}
+        \end{flushright}
+        \vfill
+  
+        Санкт-Петербург\\
+        2025
+        \end{center}
+    \end{titlepage}
+    
+    \tableofcontents
+
+    \newpage
+    \section{Цель работы}
+    Цель работы -- исследование характеристик специализированных устройств, построенных на операционных усилителях.
+
+
+    \section{Исходные данные}
+    \subsection{Таблица 1}
+    \begin{center}
+        \begin{tabular}{ | m{4em} | m{6em}| m{4em} | m{4em} | } 
+        \hline
+        Диод& Стабилитрон &$K_U$ &ОУ\\ 
+        \hline
+        1N5818& EDZV10B & 2 &LT1014\\ 
+        \hline
+        \end{tabular}
+    \end{center}
+    \subsection{Набор схем}
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.45\linewidth]{in0.png}
+        \captionsetup{skip=0pt}
+        \caption{Вид цепи ограничения: схема 1}
+        \label{fig:in0}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{in00.png}
+        \captionsetup{skip=0pt}
+        \caption{Вид цепи ограничения: схема 2}
+        \label{fig:in00}
+    \end{subfigure}
+\end{figure}
+    \subsection{Таблица 2}
+    Обозначим $\alpha$ -- двухвходовый компаратор, $\beta$ -- триггер Шмитта, $\gamma$ -- компаратор с окном
+    \begin{center}
+        \begin{tabular}{ | m{3.2em} | m{3em}| m{3em} | m{3em} | m{3.7em} | m{3.7em}| m{3.7em} | m{3.7em} |}
+        \hline
+        Обозн.& задан.& $\alpha$& $\alpha$& $\beta$& $\beta$& $\gamma$& $\gamma$\\ 
+        \hline
+        $U_{\text{пор}},$ В&$U_\text{оп},$ В& $U_\text{оп},$ В &$U_\text{Г},$ В&$U_\text{ВТО},$ В &$U_\text{НТО},$ В &$U_\text{ВТО},$ В &$U_\text{НТО},$ В\\ 
+        \hline
+        $-2$& $2$ & $1$ &$2$ &$5$ &$2$ &$7.5$ &$6.5$\\ 
+        \hline
+        \end{tabular}
+    \end{center}
+
+
+    \section{Исследование схем ограничения выходного напряжения на ОУ}
+    \subsection{Расчет параметров схемы}
+    Соберем схему ограничителя выходного напряжения на ОУ. Вид цепи ограничения представлен на рис. \ref{fig:in0}.
+    Рассчитаем параметры резисторов $R_1,R_2$ в соответствии с коэффициентом усиления
+    $$
+    K_U=\dfrac{U_\text{вых}}{U_\text{вх}}=\dfrac{R_2}{R_1}=2\Rightarrow R_2=2\text{ кОм},\ R_1=1\text{ кОм};
+    $$
+
+
+    \subsection{Схема ограничителя выходного напряжения на ОУ: вид ограничения 1}
+    Построим схему в соответствии с вариантом и расчетами. Вид цепи ограничения представлен на рис. \ref{fig:in0}.
+    Схема представлена на рис. \ref{fig:scheme1}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme1.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема ограничителя выходного напряжения на ОУ с видом ограничения 1}
+        \label{fig:scheme1}
+    \end{figure}
+
+
+    \subsection{Зависимость выходного напряжения от входного}
+    Снимем зависимость $U_\text{вых}=f\left( U_\text{вх} \right)$.
+    Значение входного напряжения изменяем в диапазоне от $-1.1U_\text{пит}$ до $1.1U_\text{пит}$.
+    Укажем на схеме в LTspice в источник тока Vin значение DC 0 и поставим на схему
+    .dc Vin {-1.1*Vcc} {1.1*Vcc} 0.01. Получаем
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_fuin.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $-1.1\leq U_\text{вх}\leq 1.1$ В}
+        \label{fig:1task_fuin}
+    \end{figure}
+    Наблюдаем ограничение для $U_\text{вых}>0$. Для $U_\text{вых}<0$ ограничение по питанию.
+
+
+    \subsection{Различные входные сигналы}
+    Подадим на вход ограничителя от внешнего генератора синусоидальный
+    сигнал амплитуды 5 В и частоты 1 кГц SINE(0 5 1k) (амплитуда превышает значение ограничения).
+    Зарисуем осциллограмму $U_\text{вых}$
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_sine_a5_f1k.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 5 1k)}
+        \label{fig:1task_sine_a5_f1k}
+    \end{figure}
+    \noindent Наблюдаем ограничение для $U_\text{вых}>0$. Попробуем подать постоянный ток в $-5$ В
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_const_m5.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при постоянном токе $-5$ В}
+        \label{fig:1task_const_m5}
+    \end{figure}
+    \noindent Наблюдаем ограничение для $U_\text{вых}>0$. Попробуем подать $5$ В
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_const_5.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при постоянном токе $5$ В}
+        \label{fig:1task_const_5}
+    \end{figure}
+    \noindent Получилось усиление с коэффициентом $-2$ (инвертирующий усилитель).
+
+
+    \subsection{Схема ограничителя выходного напряжения на ОУ: вид ограничения 2}
+    Поменяем в схеме на рис. \ref{fig:scheme1} вид ограничения на представленный на рис. \ref{fig:in00}.
+    Обновленная схема представлена на рис. \ref{fig:scheme3}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme3.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема ограничителя выходного напряжения на ОУ с видом ограничения 2}
+        \label{fig:scheme3}
+    \end{figure}
+
+
+    \subsection{Зависимость выходного напряжения от входного}
+    Снимем зависимость $U_\text{вых}=f\left( U_\text{вх} \right)$ аналогичным образом.
+    Получаем
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task2_fuin.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $-1.1\leq U_\text{вх}\leq 1.1$ В}
+        \label{fig:1task2_fuin}
+    \end{figure}
+    Наблюдаем ограничение для $U_\text{вых}>10$. Для $U_\text{вых}<0$ ограничение по питанию.
+
+
+    \subsection{Различные входные сигналы}
+    Проведем аналогичный первому виду ограничения эксперимент.
+    Зарисуем осциллограмму $U_\text{вых}$
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task2_sine_a5_f1k.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 5 1k)}
+        \label{fig:1task2_sine_a5_f1k}
+    \end{figure}
+    \noindent Теперь ограничение для $U_\text{вых}>10$ -- видим целую синусоиду. Попробуем подать постоянный ток в $-5$ В
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task2_const_m5.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при постоянном токе $-5$ В}
+        \label{fig:1task2_const_m5}
+    \end{figure}
+    \noindent Получилось усиление с коэффициентом $-2$. Попробуем подать $5$ В
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task2_const_5.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при постоянном токе $5$ В}
+        \label{fig:1task2_const_5}
+    \end{figure}
+    \noindent Получилось усиление с коэффициентом $-2$.
+
+
+    \subsection{Вывод относительно влияния нелинейных элементов в цепи обратной связи}
+    При использовании только диода выходное напряжение ограничивалось на уровне чуть больше нуля
+    (порог открывания диода). Добавление стабилитрона внесло сдвиг порога ограничения. Сигнал
+    стал ограничиваться на уровне около 10 В (напряжение стабилизации 10 В). Таким образом,
+    нелинейные элементы в цепи ОС позволяют формировать управляемое ограничение.
+
+
+    \section{Исследование нуль-компаратора}
+    \subsection{Схема нуль-компаратора}
+    Соберем схему нуль-компаратора на ОУ. Установим
+    значение сопротивления $R_1=10$ кОм. Схема
+    представлена на рис. \ref{fig:scheme5}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme5.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема нуль-компаратора}
+        \label{fig:scheme5}
+    \end{figure}
+
+
+    \subsection{Исследование синусоидального сигнала}
+    Подадим на вход системы синусоидальный сигнал с амплитудой 1 мВ,
+    частоту будем варьировать $f=0.1,0.3,0.5,1$ кГц. Снимем осцилограммы
+    $U_\text{вх}$ и $U_\text{вых}$. После этого изменим амплитуду синусоиды на 1 В и повторим эксперимент
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_in_1mV_100f.png}
+        \captionsetup{skip=0pt}
+        \caption{Входное напряжение при SINE(0 0.001 100)}
+        \label{fig:3task_sine_in_1mV_100f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_out_1mV_100f.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 0.001 100)}
+        \label{fig:3task_sine_in_1mV_100f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_in_1mV_300f.png}
+        \captionsetup{skip=0pt}
+        \caption{Входное напряжение при SINE(0 0.001 300)}
+        \label{fig:3task_sine_in_1mV_300f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_out_1mV_300f.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 0.001 300)}
+        \label{fig:3task_sine_in_1mV_300f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_in_1mV_500f.png}
+        \captionsetup{skip=0pt}
+        \caption{Входное напряжение при SINE(0 0.001 500)}
+        \label{fig:3task_sine_in_1mV_500f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_out_1mV_500f.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 0.001 500)}
+        \label{fig:3task_sine_in_1mV_500f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_in_1mV_1kf.png}
+        \captionsetup{skip=0pt}
+        \caption{Входное напряжение при SINE(0 0.001 1k)}
+        \label{fig:3task_sine_in_1mV_1kf}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_out_1mV_1kf.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 0.001 1k)}
+        \label{fig:3task_sine_in_1mV_1kf}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_in_1V_100f.png}
+        \captionsetup{skip=0pt}
+        \caption{Входное напряжение при SINE(0 1 100)}
+        \label{fig:3task_sine_in_1V_100f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_out_1V_100f.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 1 100)}
+        \label{fig:3task_sine_in_1V_100f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_in_1V_300f.png}
+        \captionsetup{skip=0pt}
+        \caption{Входное напряжение при SINE(0 1 300)}
+        \label{fig:3task_sine_in_1V_300f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_out_1V_300f.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 1 300)}
+        \label{fig:3task_sine_in_1V_300f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_in_1V_500f.png}
+        \captionsetup{skip=0pt}
+        \caption{Входное напряжение при SINE(0 1 500)}
+        \label{fig:3task_sine_in_1V_500f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_out_1V_500f.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 1 500)}
+        \label{fig:3task_sine_in_1V_500f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_in_1V_1kf.png}
+        \captionsetup{skip=0pt}
+        \caption{Входное напряжение при SINE(0 1 1k)}
+        \label{fig:3task_sine_in_1V_1kf}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_sine_out_1V_1kf.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 1 1k)}
+        \label{fig:3task_sine_in_1V_1kf}
+    \end{figure}
+
+
+    \subsection{Вывод}
+    Уровня входного сигнала в 1 мВ недостаточно для корректной работы компаратора.
+    При усилении сигнала до 1 В компаратор работает стабильно и верно.
+
+
+    \section{Исследование одновходового компаратора}
+\end{document}
