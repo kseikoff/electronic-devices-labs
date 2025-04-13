@@ -150,7 +150,7 @@
     Снимем зависимость $U_\text{вых}=f\left( U_\text{вх} \right)$.
     Значение входного напряжения изменяем в диапазоне от $-1.1U_\text{пит}$ до $1.1U_\text{пит}$.
     Укажем на схеме в LTspice в источник тока Vin значение DC 0 и поставим на схему
-    .dc Vin {-1.1*Vcc} {1.1*Vcc} 0.01. Получаем
+    .dc Vin \{-1.1*Vcc\} \{1.1*Vcc\} 0.01. Получаем
     \begin{figure}[H]
         \centering
         \includegraphics[scale=0.46]{1task_fuin.png}
@@ -282,7 +282,7 @@
         \includegraphics[scale=0.46]{3task_sine_out_1mV_100f.png}
         \captionsetup{skip=0pt}
         \caption{Выходное напряжение при SINE(0 0.001 100)}
-        \label{fig:3task_sine_in_1mV_100f}
+        \label{fig:3task_sine_out_1mV_100f}
     \end{figure}
     \begin{figure}[H]
         \centering
@@ -296,7 +296,7 @@
         \includegraphics[scale=0.46]{3task_sine_out_1mV_300f.png}
         \captionsetup{skip=0pt}
         \caption{Выходное напряжение при SINE(0 0.001 300)}
-        \label{fig:3task_sine_in_1mV_300f}
+        \label{fig:3task_sine_out_1mV_300f}
     \end{figure}
     \begin{figure}[H]
         \centering
@@ -310,7 +310,7 @@
         \includegraphics[scale=0.46]{3task_sine_out_1mV_500f.png}
         \captionsetup{skip=0pt}
         \caption{Выходное напряжение при SINE(0 0.001 500)}
-        \label{fig:3task_sine_in_1mV_500f}
+        \label{fig:3task_sine_out_1mV_500f}
     \end{figure}
     \begin{figure}[H]
         \centering
@@ -324,7 +324,7 @@
         \includegraphics[scale=0.46]{3task_sine_out_1mV_1kf.png}
         \captionsetup{skip=0pt}
         \caption{Выходное напряжение при SINE(0 0.001 1k)}
-        \label{fig:3task_sine_in_1mV_1kf}
+        \label{fig:3task_sine_out_1mV_1kf}
     \end{figure}
     \begin{figure}[H]
         \centering
@@ -338,7 +338,7 @@
         \includegraphics[scale=0.46]{3task_sine_out_1V_100f.png}
         \captionsetup{skip=0pt}
         \caption{Выходное напряжение при SINE(0 1 100)}
-        \label{fig:3task_sine_in_1V_100f}
+        \label{fig:3task_sine_out_1V_100f}
     \end{figure}
     \begin{figure}[H]
         \centering
@@ -352,7 +352,7 @@
         \includegraphics[scale=0.46]{3task_sine_out_1V_300f.png}
         \captionsetup{skip=0pt}
         \caption{Выходное напряжение при SINE(0 1 300)}
-        \label{fig:3task_sine_in_1V_300f}
+        \label{fig:3task_sine_out_1V_300f}
     \end{figure}
     \begin{figure}[H]
         \centering
@@ -366,7 +366,7 @@
         \includegraphics[scale=0.46]{3task_sine_out_1V_500f.png}
         \captionsetup{skip=0pt}
         \caption{Выходное напряжение при SINE(0 1 500)}
-        \label{fig:3task_sine_in_1V_500f}
+        \label{fig:3task_sine_out_1V_500f}
     \end{figure}
     \begin{figure}[H]
         \centering
@@ -380,7 +380,7 @@
         \includegraphics[scale=0.46]{3task_sine_out_1V_1kf.png}
         \captionsetup{skip=0pt}
         \caption{Выходное напряжение при SINE(0 1 1k)}
-        \label{fig:3task_sine_in_1V_1kf}
+        \label{fig:3task_sine_out_1V_1kf}
     \end{figure}
 
 
@@ -390,4 +390,129 @@
 
 
     \section{Исследование одновходового компаратора}
-\end{document}
+    \subsection{Расчет параметров схемы}
+    Соберем схему одновходового компаратора.
+    Зададим значение сопротивления резистора $R_1=100$ Ом.
+    Из таблицы 2 берем значение $U_\text{пор}=-2$ В. По условию $U_\text{оп}=10$ В.
+    Рассчитаем значения сопротивлений резисторов $R_2,R_3$
+    $$
+    U_\text{пор}=-U_\text{оп}\dfrac{R_1}{R_2},\ R_3=\dfrac{R_1R_2}{R_1+R_2},
+    $$
+    $$
+    -2=-10\cdot\dfrac{100}{R_2}\Rightarrow R_2=500\text{ Ом},\ R_3=\dfrac{100\cdot500}{100+500}\approx83.33\text{ Ом};
+    $$
+
+
+    \subsection{Схема одновходового компаратора}
+    Соберем схему согласно расчетам и варианту. Схема представлена на рис. \ref{fig:scheme6}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme6.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема одновходового компаратора}
+        \label{fig:scheme6}
+    \end{figure}
+
+    
+    \subsection{Зависимость выходного напряжения от входного}
+    Снимем зависимость $U_\text{вых}=f\left( U_\text{вх} \right)$ аналогично
+    заданию с ограничителем. Получаем
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{4task_fuin.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $-1.1\leq U_\text{вх}\leq 1.1$ В, $U_\text{пор эксп}=-1.986$ В}
+        \label{fig:4task_fuin}
+    \end{figure}
+
+
+    \subsection{Вывод}
+    При прохождении сигналом порога в $-2$ В компаратор корректно
+    переключился между положительным и отрицательным насыщением.
+
+    
+    \section{Исследование двухвходового компаратора}
+    \subsection{Схема двухвходового компаратора без гистерезиса}
+    Соберем схему двухвходового компаратора без гистерезиса на ОУ при $U_\text{оп}=1$.
+    Значения резисторов произвольные -- они не влияют на порог сравнения.
+    Схема представлена на рис. \ref{fig:scheme7}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme7.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема двухвходового компаратора без гистерезиса}
+        \label{fig:scheme7}
+    \end{figure}
+
+
+    \subsection{Зависимость выходного напряжения от входного}
+    Снимем зависимость $U_\text{вых}=f\left( U_\text{вх} \right)$ как в задании с ограничителем.
+    Получаем
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{5task_fuin.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $-1.1\leq U_\text{вх}\leq 1.1$ В, $U_\text{пор эксп}=1.014$ В}
+        \label{fig:5task_fuin}
+    \end{figure}
+
+
+    \subsection{Вывод}
+    Вывод аналогичен заданию с одновходовым компаратором
+    -- двухвходовый компаратор без гистерезиса
+    отработал корректно.
+
+
+    \subsection{Расчет схемы двухвходового компаратора с гистерезисом на ОУ}
+    Соберем схему двухвходового компаратора с гистерезисом на операционном
+    усилителе. Рассчитаем параметры схемы. $R_3$ берем произвольно, он не
+    влияет на гистерезис. Зафиксируем $R_2=10\text{ кОм}$. В нашем случае
+    $U_\text{пит}=U_{\text{нас}+}=|U_{\text{нас}-}|=22$ В. Из
+    таблицы 2 берем значение размаха гистерезиса $U_\text{Г}=2$ В. Определим значение $R_1$
+    $$
+    U_\text{Г}=2\cdot\dfrac{R_1}{R_1+R_2}U_{\text{нас}+},\ 2=\dfrac{2R_1}{R_1+10000}\cdot22\Rightarrow R_1\approx476.2\text{ Ом};
+    $$
+
+
+    \subsection{Схема двухвходового компаратора с гистерезисом на ОУ}
+    Соберем одноименную схему согласно расчетам и варианту
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme8.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема двухвходового компаратора с гистерезисом на ОУ}
+        \label{fig:scheme8}
+    \end{figure}
+
+
+    \subsection{Зависимость выходного напряжения от входного}
+    Снимем зависимость $U_\text{вых}=f\left( U_\text{вх} \right)$ как в задании с ограничителем.
+    Получаем
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{6task_fuin.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $-1.1\leq U_\text{вх}\leq 1.1$ В, $U_\text{пор эксп}=1.911$ В}
+        \label{fig:6task_fuin}
+    \end{figure}
+    \noindent Снимем зависимость $U_\text{вых}=f\left( U_\text{вх} \right)$ для гармонического
+    входного воздействия амплитудой 1 В, частотой от 100 Гц до 1 кГц. Получаем (наименьший наклон
+    при $f=100$ Гц -- синяя прямая, наибольший при $f=1$ кГц -- коричневая прямая)
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{6task_fuin_sine.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 1 \{f\}), $f\in\left[ 0.1,1 \right]$ кГц, шаг $\Delta f=100$ Гц}
+        \label{fig:6task_fuin_sine}
+    \end{figure}
+    \noindent Чем выше частота, тем больше угол наклона. Однако угол наклона имеет некоторый предел
+    -- со временем он увеличивается на меньшее количество градусов.
+
+
+    \subsection{Расчет схемы триггера Шмитта с однополярным выходом}
+    ...
+    
+    
+    \subsection{Вывод}
+    Компараторы работает корректно и подтверждают корректность расчетов и рассуждений.
+\end{document} 
