@@ -524,10 +524,10 @@
     Соберем схему двухвходового компаратора с гистерезисом на операционном
     усилителе. Рассчитаем параметры схемы. $R_3$ берем произвольно, он не
     влияет на гистерезис. Зафиксируем $R_2=10\text{ кОм}$. В нашем случае
-    $U_\text{пит}=U_{\text{нас}+}=|U_{\text{нас}-}|=22$ В. Из
+    $U_{\text{нас}+}=|U_{\text{нас}-}|=U_\text{пит}-1=21$ В. Из
     таблицы 2 берем значение размаха гистерезиса $U_\text{Г}=2$ В. Определим значение $R_1$
     $$
-    U_\text{Г}=2\cdot\dfrac{R_1}{R_1+R_2}U_{\text{нас}+},\ 2=\dfrac{2R_1}{R_1+10000}\cdot22\Rightarrow R_1\approx476.2\text{ Ом};
+    U_\text{Г}=2\cdot\dfrac{R_1}{R_1+R_2}U_{\text{нас}+},\ 2=\dfrac{2R_1}{R_1+10000}\cdot21\Rightarrow R_1=500\text{ Ом};
     $$
 
 
@@ -542,6 +542,17 @@
     \end{figure}
 
 
+    \subsection{Гистерезис}
+    Подадим SINE(0 5 100) и снимем V(Vin), чтобы увидеть петлю гистерезиса. Привязка Vin через net к проводу после источника питания
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{hystesis1.png}
+        \captionsetup{skip=0pt}
+        \caption{Гистерезис при SINE(0 5 100): V(Vin)}
+        \label{fig:hystesis1}
+    \end{figure}
+
+
     \subsection{Зависимость выходного напряжения от входного}
     Снимем зависимость $U_\text{вых}=f\left( U_\text{вх} \right)$ как в задании с ограничителем.
     Получаем
@@ -549,21 +560,40 @@
         \centering
         \includegraphics[scale=0.46]{6task_fuin.png}
         \captionsetup{skip=0pt}
-        \caption{Выходное напряжение при $-1.1U_\text{пит}\leq U_\text{вх}\leq 1.1U_\text{пит}$ В, $U_\text{пор эксп}=1.911$ В}
+        \caption{Выходное напряжение при $-1.1U_\text{пит}\leq U_\text{вх}\leq 1.1U_\text{пит}$ В, $U_\text{пор эксп}=1.950$ В}
         \label{fig:6task_fuin}
     \end{figure}
     \noindent Снимем зависимость $U_\text{вых}=f\left( U_\text{вх} \right)$ для гармонического
-    входного воздействия амплитудой 1 В, частотой от 100 Гц до 1 кГц. Получаем (наименьший наклон
-    при $f=100$ Гц -- синяя прямая, наибольший при $f=1$ кГц -- коричневая прямая)
+    входного воздействия амплитудой 2 В, частотой от 100 Гц до 1 кГц. V(n003) -- выходное напряжение,
+    V(vin) -- входное
     \begin{figure}[H]
         \centering
-        \includegraphics[scale=0.46]{6task_fuin_sine.png}
+        \includegraphics[scale=0.46]{6task_sine_2V_100f.png}
         \captionsetup{skip=0pt}
-        \caption{Выходное напряжение при SINE(0 1 \{f\}), $f\in\left[ 0.1,1 \right]$ кГц, шаг $\Delta f=100$ Гц}
-        \label{fig:6task_fuin_sine}
+        \caption{Выходное напряжение при SINE(0 2 100)}
+        \label{fig:6task_sine_2V_100f}
     \end{figure}
-    \noindent Чем выше частота, тем больше угол наклона. Однако угол наклона имеет некоторый предел
-    -- со временем он увеличивается на меньшее количество градусов.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{6task_sine_2V_300f.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 2 300)}
+        \label{fig:6task_sine_2V_300f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{6task_sine_2V_500f.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 2 500)}
+        \label{fig:6task_sine_2V_500f}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{6task_sine_2V_1kf.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 2 1k)}
+        \label{fig:6task_sine_2V_1kf}
+    \end{figure}
 
 
     \subsection{Расчет параметров схемы триггера Шмитта с однополярным выходом}
@@ -612,6 +642,17 @@
         \captionsetup{skip=0pt}
         \caption{Схема триггера Шмитта с однополярным выходом}
         \label{fig:scheme10}
+    \end{figure}
+
+
+    \subsection{Гистерезис}
+    Подадим SINE(0 10 100) и снимем V(Vin), чтобы увидеть петлю гистерезиса
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{hystesis2.png}
+        \captionsetup{skip=0pt}
+        \caption{Гистерезис при SINE(0 10 100): V(Vin)}
+        \label{fig:hystesis2}
     \end{figure}
 
 
