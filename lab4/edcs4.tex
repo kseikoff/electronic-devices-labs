@@ -113,7 +113,7 @@
     \subsection{Таблица 2}
     Обозначим $\alpha$ -- двухвходовый компаратор, $\beta$ -- триггер Шмитта, $\gamma$ -- компаратор с окном
     \begin{center}
-        \begin{tabular}{ | m{3.2em} | m{3em}| m{3em} | m{3em} | m{3.7em} | m{3.7em}| m{3.7em} | m{3.7em} |}
+        \begin{tabular}{ | m{3.2em} | m{3.2em}| m{3.2em} | m{3em} | m{3.7em} | m{3.7em}| m{3.7em} | m{3.7em} |}
         \hline
         Обозн.& задан.& $\alpha$& $\alpha$& $\beta$& $\beta$& $\gamma$& $\gamma$\\ 
         \hline
@@ -243,6 +243,63 @@
         \label{fig:1task2_const_5}
     \end{figure}
     \noindent Получилось усиление с коэффициентом $-2$.
+
+
+    \subsection{Расчет схемы симметричного ограничителя}
+    Пусть напряжение на диодах $U_\text{Д}=0.4$ В, тогда
+    $$
+    U_\text{огр}=U_\text{ст}+2U_\text{Д}=10+2\cdot0.4=10.8\text{ В}
+    $$
+    Перепад напряжения
+    $$
+    \Delta U=U_\text{пит}-U_\text{огр}=22-10.8=11.2\text{ В}
+    $$
+    Пусть ток на диодах $I_\text{Д}=20$ мА, тогда
+    $$
+    R_2=\dfrac{\Delta U}{I_\text{Д}}=\dfrac{11.2}{0.02}=560\text{ Ом}
+    $$
+    Пусть максимальное входное напряжение $U_\text{вх}=\pm22$ В, а ток
+    не должен превышать $I_\text{вх макс}=1$ мА, тогда
+    $$
+    R_1=\dfrac{22}{0.001}=22\text{ кОм}
+    $$
+
+
+    \subsection{Схема симметричного ограничителя}
+    Построим схему с учетом предыдущих расчетов
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme13.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема симметричного ограничителя}
+        \label{fig:scheme13}
+    \end{figure}
+
+
+    \subsection{Зависимость выходного напряжения от входного}
+    Снимем зависимость $U_\text{вых}=f\left( U_\text{вх} \right)$ аналогичным образом.
+    Получаем
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{0task_fuin.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при $-1.1U_\text{пит}\leq U_\text{вх}\leq 1.1U_\text{пит}$ В}
+        \label{fig:0task_fuin}
+    \end{figure}
+    Наблюдаем ограничение $-10<U_\text{вых}<10$.
+
+
+    \subsection{Исследование синусоидального сигнала}
+    Подадим на вход системы синусоидальный сигнал SINE(0 5 1k) и снимем осциллограмму $U_\text{вых}$.
+    V(n004) -- выход, V(n007) -- вход
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{0task_sine.png}
+        \captionsetup{skip=0pt}
+        \caption{Выходное напряжение при SINE(0 5 1k)}
+        \label{fig:0task_sine}
+    \end{figure}
+    \noindent Синус стал прямоугольной волной из-за ограничений на $\pm10$ В.
 
 
     \subsection{Вывод относительно влияния нелинейных элементов в цепи обратной связи}
