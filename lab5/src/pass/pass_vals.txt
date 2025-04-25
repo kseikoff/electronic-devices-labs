@@ -1,0 +1,7 @@
+task 1
+start: freq 10 Hz, mag: 15.554492dB, phase: 179.90453°
+pass: freq 5.9961892KHz, mag: 12.548454dB, phase: 135.02205°
+
+task 2
+start: freq 100 KHz, mag: 13.977885dB, phase: 2.4062551°
+pass: freq 5.0300312KHz, mag: 10.990257dB, phase: 44.830656°

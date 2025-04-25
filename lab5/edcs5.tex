@@ -1,0 +1,267 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage[left=25mm, top=25mm, right=25mm, bottom=25mm]{geometry}
+\usepackage{cmap}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{etoolbox}
+\usepackage{titlesec}
+\usepackage{array}
+\pagestyle{plain}
+\patchcmd{\tableofcontents}{\contentsname}{\centering\contentsname}{}{}
+\titleformat{\section}[block]{\normalfont\large\bfseries\centering}{}{0pt}{}
+\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries\centering}{}{0pt}{}
+\titleformat{\subsubsection}[block]{\normalfont\small\bfseries\centering}{}{0pt}{}
+\allowdisplaybreaks
+\graphicspath{{src/images/}}
+\usetikzlibrary{patterns}
+\definecolor{LightGray}{gray}{0.95}
+\definecolor{LightGray2}{gray}{0.7}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={contents setup},
+    pdfpagemode=FullScreen,
+}
+
+
+\begin{document}
+    \begin{titlepage}
+
+        \begin{center}
+        Федеральное государственное автономное образовательное учреждение высшего образования
+        «Национальный Исследовательский Университет ИТМО»
+        \vfill
+        
+        \includegraphics[width=0.3\textwidth]{itmo.png} % requires /src/images/itmo.png
+
+        {\large\bf ЛАБОРАТОРНАЯ РАБОТА №5}\\
+        {\large\bf ПРЕДМЕТ «ЭЛЕКТРОННЫЕ УСТРОЙСТВА СИСТЕМ УПРАВЛЕНИЯ»}\\
+        {\large\bf ТЕМА «АКТИВНЫЕ ФИЛЬТРЫ НА ОПЕРАЦИОННЫХ УСИЛИТЕЛЯХ»}\\
+        Вариант №10
+        \vfill
+
+        \begin{flushright}
+            \begin{minipage}{.45\textwidth}
+            {
+                \hbox{Преподаватель:}
+                \hbox{Жданов В. А.}
+                \hbox{}
+                \hbox{Выполнил:}
+                \hbox{Румянцев А. А.}
+                \hbox{}
+                \hbox{Факультет: СУиР}
+                \hbox{Группа: R3341}
+                \hbox{Поток: ЭлУСУ R22 бак 1.2}
+            }
+            \end{minipage}
+        \end{flushright}
+        \vfill
+  
+        Санкт-Петербург\\
+        2025
+        \end{center}
+    \end{titlepage}
+    
+    \tableofcontents
+
+    \newpage
+    \section{Цель работы}
+    Цель работы -- исследование схем активных фильтров.
+
+
+    \section{Исходные данные}
+    Операционный усилитель берем как в лабораторной работе №3 -- LT1037.
+
+
+    \subsection{Активные фильтры первого порядка}
+    \subsubsection{ФНЧ инвертирующий}
+    Исходные данные ФНЧ инвертирующий
+    \begin{center}
+        \begin{tabular}{ | m{3.5em} | m{3.5em}| m{3.5em} | m{2.5em} | m{3.5em} |} 
+        \hline
+        $R_1$, Ом& $R_2$, Ом &$C_1$, нФ &$K_U^*$ &$f_\text{ср}^*$, кГц\\ 
+        \hline
+        442.1& 2650 & 10 &6 &6\\ 
+        \hline
+        \end{tabular}
+    \end{center}
+    \begin{figure}[H]
+        \centering
+        \includegraphics{low_pass_m.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема ФНЧ инвертирующий}
+        \label{fig:null_scheme1}
+    \end{figure}
+
+
+    \subsubsection{ФВЧ неинвертирующий}
+    Исходные данные ФВЧ неинвертирующий
+    \begin{center}
+        \begin{tabular}{ | m{3.5em} | m{4em}| m{4em} | m{3.5em} | m{2.5em} | m{3.5em} |} 
+        \hline
+        $R_1$, Ом& $R_2$, кОм &$R_3$, кОм &$C_1$, нФ &$K_U^*$ &$f_\text{ср}^*$, кГц\\ 
+        \hline
+        3180& 1 &4 &10 &5 &5\\ 
+        \hline
+        \end{tabular}
+    \end{center}
+    \begin{figure}[H]
+        \centering
+        \includegraphics{high_pass_p.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема ФВЧ неинвертирующий}
+        \label{fig:null_scheme2}
+    \end{figure}
+
+
+    \subsection{Активные фильтры второго порядка}
+    \subsubsection{ФВЧ Салена-Ки}
+    Исходные данные ФВЧ Салена-Ки
+    \begin{center}
+        \begin{tabular}{ | m{3.5em} | m{3.5em}| m{3.5em} | m{4em} | m{4em} | m{4em} | m{2.5em} | m{3.5em} |} 
+        \hline
+        $C_1$, нФ&$C_2$, нФ&$R_1$, Ом&$R_2$, кОм&$R_3$, кОм&$R_4$, кОм&$K_U^*$&$f_\text{ср}^*$, кГц\\ 
+        \hline
+        100&100&292.2&0.8766&1&3&4&4\\ 
+        \hline
+        \end{tabular}
+    \end{center}
+    \begin{figure}[H]
+        \centering
+        \includegraphics{high_pass_sk.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема ФВЧ Салена-Ки}
+        \label{fig:null_scheme3}
+    \end{figure}
+
+
+    \subsubsection{ПФ многопетлевая ОС}
+    Исходные данные ПФ многопетлевая ОС
+    \begin{center}
+        \begin{tabular}{ | m{3.5em} | m{3.5em}| m{3.5em} | m{4em} | m{4em} | m{2.5em} | m{4em} | m{4.5em} |} 
+        \hline
+        $C_1$, нФ&$C_2$, нФ&$R_1$, Ом&$R_2$, кОм&$R_3$, кОм&$K_U^*$&$f_\text{ср}^*$, кГц &$\Delta f^*$, кГц\\ 
+        \hline
+        10&10&530.5&4.78&5.3&5&10&6\\ 
+        \hline
+        \end{tabular}
+    \end{center}
+    \begin{figure}[H]
+        \centering
+        \includegraphics{strip_multi.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема ПФ с многопетлевой ОС}
+        \label{fig:null_scheme4}
+    \end{figure}
+
+
+    \subsubsection{Режекторный фильтр}
+    Исходные данные для режекторного фильтра
+    \begin{center}
+        \begin{tabular}{ | m{3.5em} | m{3.5em}| m{3.5em} | m{4em} | m{4em} | m{3.5em} | m{4em} | m{4em} |} 
+        \hline
+        $C_1$, нФ&$C_2$, нФ&$C_3$, нФ&$R_1$, кОм&$R_2$, кОм&$R_3$, Ом &$R_4$, кОм&$R_5$, кОм\\ 
+        \hline
+        10&10&20&0.7958&0.7958&397.9&$\infty$&0\\ 
+        \hline
+        \end{tabular}
+    \end{center}
+    \begin{center}
+        \begin{tabular}{ | m{3.5em} | m{3.5em}| m{4.5em} |} 
+        \hline
+        $K_U^*$&$f_\text{ср}^*$, кГц&$\Delta f^*$, кГц\\ 
+        \hline
+        1&20&20\\ 
+        \hline
+        \end{tabular}
+    \end{center}
+    \begin{figure}[H]
+        \centering
+        \includegraphics{rectoring.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема РФ}
+        \label{fig:null_scheme5}
+    \end{figure}
+
+
+    \section{Исследование активных фильтров первого порядка}
+    \subsection{Схема инвертирующего ФНЧ}
+    Построим схему инвертирующего ФНЧ в LTspice
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme1.png}
+        \captionsetup{skip=0pt}
+        \caption{ФНЧ инвертирующий}
+        \label{fig:scheme1}
+    \end{figure}
+
+
+    \subsection{ЛАФЧХ характеристика инв. ФНЧ}
+    Зададим на входной сигнал AC 1 и снимем ЛАЧХ на выходе через .ac dec 100 10 100k (sweep по частоте от 10 Гц до 100 кГц с 100 точками на декаду)
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{1task_lapfr.png}
+        \captionsetup{skip=0pt}
+        \caption{ЛАФЧХ характеристика инвертирующего ФНЧ}
+        \label{fig:1task_lapfr}
+    \end{figure}
+    \noindent Курсором снимем значения $A_{n\text{ дБ}},A_{n-3\text{ дБ}},f_{n\text{ дБ}}, f_{n-3\text{ дБ}},\varphi_{n\text{ дБ}}, \varphi_{n-3\text{ дБ}}$,
+    где $n-3$ -- амплитуда, на которой находится полоса пропускания фильтра
+    $$
+    f_{n\text{ дБ}}=10\text{ Гц}:\ A_{n\text{ дБ}}=15.554492\text{ дБ},\ \varphi_{n\text{ дБ}}=179.90453^{\circ};
+    $$
+    $$
+    f_{n-3\text{ дБ}}=5.9961892 \text{ кГц}:\ A_{n-3\text{ дБ}}=12.548454\text{ дБ},\ \varphi_{n-3\text{ дБ}}=135.02205^{\circ};
+    $$
+    Имеем
+    $$
+    \Delta A=3.006038\text{ дБ},\ f_{n-3\text{ дБ}}=5.9961892\approx f_\text{ср}^*=6\text{ кГц};
+    $$
+    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной.
+
+
+    \subsection{Схема неинвертирующего ФВЧ}
+    Построим схему неинвертирующего ФВЧ в LTspice
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme2.png}
+        \captionsetup{skip=0pt}
+        \caption{ФВЧ неинвертирующий}
+        \label{fig:scheme2}
+    \end{figure}
+
+
+    \subsection{ЛАФЧХ характеристика неинв. ФВЧ}
+    Аналогично найдем ЛАФЧХ характеристику фильтра
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{2task_lapfr.png}
+        \captionsetup{skip=0pt}
+        \caption{ЛАФЧХ характеристика неинвертирующего ФВЧ}
+        \label{fig:2task_lapfr}
+    \end{figure}
+    \noindent Аналогично курсором снимем значения
+    $$
+    f_{n\text{ дБ}}=100\text{ кГц}:\ A_{n\text{ дБ}}=13.977885\text{ дБ},\ \varphi_{n\text{ дБ}}=2.4062551^{\circ};
+    $$
+    $$
+    f_{n-3\text{ дБ}}=5.0300312 \text{ кГц}:\ A_{n-3\text{ дБ}}=10.990257\text{ дБ},\ \varphi_{n-3\text{ дБ}}=44.830656^{\circ};
+    $$
+    Имеем
+    $$
+    \Delta A=2.987628\text{ дБ},\ f_{n-3\text{ дБ}}=5.0300312\approx f_\text{ср}^*=5\text{ кГц};
+    $$
+    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной.
+\end{document}
