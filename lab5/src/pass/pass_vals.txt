@@ -1,7 +1,21 @@
 task 1
-start: freq 10 Hz, mag: 15.554492dB, phase: 179.90453°
-pass: freq 5.9961892KHz, mag: 12.548454dB, phase: 135.02205°
+start: freq 10 Hz, mag 15.554492dB, phase 179.90453°
+pass: freq 5.9961892KHz, mag 12.548454dB, phase 135.02205°
 
 task 2
-start: freq 100 KHz, mag: 13.977885dB, phase: 2.4062551°
-pass: freq 5.0300312KHz, mag: 10.990257dB, phase: 44.830656°
+start: freq 100 KHz, mag 13.977885dB, phase 2.4062551°
+pass: freq 5.0300312KHz, mag 10.990257dB, phase 44.830656°
+
+task 3
+start: freq 100 KHz, mag 12.041278dB, phase 2.728094°
+pass: freq 4.0088442KHz, mag 9.0426662dB, phase 74.15903°
+
+task 4
+highest point: freq 9.9797335KHz, mag 13.969476dB, phase -179.59242°
+left pass: freq 7.4515513KHz, mag 10.982289dB, phase -135.16323°
+right pass: freq 13.474586KHz, mag 10.926412dB, phase -225.242°
+
+task 5
+lowest point: freq 20.061636KHz, mag -9.5470452dB, phase 252.64918m°
+left pass: freq 11.587212KHz, mag -6.4971049dB, phase -28.006004°
+right pass: freq 34.454665KHz, mag -6.5038859dB, phase 27.939365°

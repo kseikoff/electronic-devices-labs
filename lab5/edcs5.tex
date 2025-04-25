@@ -86,7 +86,7 @@
 
 
     \subsection{Активные фильтры первого порядка}
-    \subsubsection{ФНЧ инвертирующий}
+    \subsubsection{ФНЧ инвертирующий} \label{sec:lpinv}
     Исходные данные ФНЧ инвертирующий
     \begin{center}
         \begin{tabular}{ | m{3.5em} | m{3.5em}| m{3.5em} | m{2.5em} | m{3.5em} |} 
@@ -106,7 +106,7 @@
     \end{figure}
 
 
-    \subsubsection{ФВЧ неинвертирующий}
+    \subsubsection{ФВЧ неинвертирующий} \label{sec:hpninv}
     Исходные данные ФВЧ неинвертирующий
     \begin{center}
         \begin{tabular}{ | m{3.5em} | m{4em}| m{4em} | m{3.5em} | m{2.5em} | m{3.5em} |} 
@@ -127,7 +127,7 @@
 
 
     \subsection{Активные фильтры второго порядка}
-    \subsubsection{ФВЧ Салена-Ки}
+    \subsubsection{ФВЧ Салена-Ки} \label{sec:hpsk}
     Исходные данные ФВЧ Салена-Ки
     \begin{center}
         \begin{tabular}{ | m{3.5em} | m{3.5em}| m{3.5em} | m{4em} | m{4em} | m{4em} | m{2.5em} | m{3.5em} |} 
@@ -147,7 +147,7 @@
     \end{figure}
 
 
-    \subsubsection{ПФ многопетлевая ОС}
+    \subsubsection{ПФ многопетлевая ОС} \label{sec:strip_multi}
     Исходные данные ПФ многопетлевая ОС
     \begin{center}
         \begin{tabular}{ | m{3.5em} | m{3.5em}| m{3.5em} | m{4em} | m{4em} | m{2.5em} | m{4em} | m{4.5em} |} 
@@ -160,14 +160,14 @@
     \end{center}
     \begin{figure}[H]
         \centering
-        \includegraphics{strip_multi.png}
+        \includegraphics[scale=0.9]{strip_multi.png}
         \captionsetup{skip=0pt}
-        \caption{Схема ПФ с многопетлевой ОС}
+        \caption{Схема ПФ с многопетлевой обратной связью}
         \label{fig:null_scheme4}
     \end{figure}
 
 
-    \subsubsection{Режекторный фильтр}
+    \subsubsection{Режекторный фильтр} \label{sec:rectoring}
     Исходные данные для режекторного фильтра
     \begin{center}
         \begin{tabular}{ | m{3.5em} | m{3.5em}| m{3.5em} | m{4em} | m{4em} | m{3.5em} | m{4em} | m{4em} |} 
@@ -203,7 +203,7 @@
         \centering
         \includegraphics[scale=0.22]{scheme1.png}
         \captionsetup{skip=0pt}
-        \caption{ФНЧ инвертирующий}
+        \caption{Схема инвертирующего ФНЧ}
         \label{fig:scheme1}
     \end{figure}
 
@@ -219,17 +219,15 @@
     \end{figure}
     \noindent Курсором снимем значения $A_{n\text{ дБ}},A_{n-3\text{ дБ}},f_{n\text{ дБ}}, f_{n-3\text{ дБ}},\varphi_{n\text{ дБ}}, \varphi_{n-3\text{ дБ}}$,
     где $n-3$ -- амплитуда, на которой находится полоса пропускания фильтра
-    $$
-    f_{n\text{ дБ}}=10\text{ Гц}:\ A_{n\text{ дБ}}=15.554492\text{ дБ},\ \varphi_{n\text{ дБ}}=179.90453^{\circ};
-    $$
-    $$
-    f_{n-3\text{ дБ}}=5.9961892 \text{ кГц}:\ A_{n-3\text{ дБ}}=12.548454\text{ дБ},\ \varphi_{n-3\text{ дБ}}=135.02205^{\circ};
-    $$
+    \begin{align*}
+    &f_{n\text{ дБ}}=10\text{ Гц}:\ A_{n\text{ дБ}}=15.554492\text{ дБ},\ \varphi_{n\text{ дБ}}=179.90453^{\circ};\\
+    &f_{n-3\text{ дБ}}=5.9961892 \text{ кГц}:\ A_{n-3\text{ дБ}}=12.548454\text{ дБ},\ \varphi_{n-3\text{ дБ}}=135.02205^{\circ};
+    \end{align*}
     Имеем
     $$
-    \Delta A=3.006038\text{ дБ},\ f_{n-3\text{ дБ}}=5.9961892\approx f_\text{ср}^*=6\text{ кГц};
+    \Delta A=3.006038\text{ дБ},\ f_{n-3\text{ дБ}}=5.9961892\text{ кГц}\approx f_\text{ср}^*=6\text{ кГц};
     $$
-    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной.
+    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной (см. $f_\text{ср}^*$ в табл. \ref{sec:lpinv}).
 
 
     \subsection{Схема неинвертирующего ФВЧ}
@@ -238,7 +236,7 @@
         \centering
         \includegraphics[scale=0.22]{scheme2.png}
         \captionsetup{skip=0pt}
-        \caption{ФВЧ неинвертирующий}
+        \caption{Схема неинвертирующего ФВЧ}
         \label{fig:scheme2}
     \end{figure}
 
@@ -253,15 +251,137 @@
         \label{fig:2task_lapfr}
     \end{figure}
     \noindent Аналогично курсором снимем значения
-    $$
-    f_{n\text{ дБ}}=100\text{ кГц}:\ A_{n\text{ дБ}}=13.977885\text{ дБ},\ \varphi_{n\text{ дБ}}=2.4062551^{\circ};
-    $$
-    $$
-    f_{n-3\text{ дБ}}=5.0300312 \text{ кГц}:\ A_{n-3\text{ дБ}}=10.990257\text{ дБ},\ \varphi_{n-3\text{ дБ}}=44.830656^{\circ};
-    $$
+    \begin{align*}
+    &f_{n\text{ дБ}}=100\text{ кГц}:\ A_{n\text{ дБ}}=13.977885\text{ дБ},\ \varphi_{n\text{ дБ}}=2.4062551^{\circ};\\
+    &f_{n-3\text{ дБ}}=5.0300312 \text{ кГц}:\ A_{n-3\text{ дБ}}=10.990257\text{ дБ},\ \varphi_{n-3\text{ дБ}}=44.830656^{\circ};
+    \end{align*}
     Имеем
     $$
-    \Delta A=2.987628\text{ дБ},\ f_{n-3\text{ дБ}}=5.0300312\approx f_\text{ср}^*=5\text{ кГц};
+    \Delta A=2.987628\text{ дБ},\ f_{n-3\text{ дБ}}=5.0300312\text{ кГц}\approx f_\text{ср}^*=5\text{ кГц};
     $$
-    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной.
+    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной (см. $f_\text{ср}^*$ в табл. \ref{sec:hpninv}).
+
+
+    \section{Исследование активных фильтров второго порядка}
+    \subsection{ФВЧ Салена-Ки}
+    Построим схему одноименного фильтра в LTspice
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme3.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема ФВЧ Салена-Ки}
+        \label{fig:scheme3}
+    \end{figure}
+
+
+    \subsection{ЛАФЧХ характеристика ФВЧ Салена-Ки}
+    Аналогично найдем ЛАФЧХ характеристику фильтра
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{3task_lapfr.png}
+        \captionsetup{skip=0pt}
+        \caption{ЛАФЧХ характеристика ФВЧ Салена-Ки}
+        \label{fig:3task_lapfr}
+    \end{figure}
+    \noindent Аналогично курсором снимем значения
+    \begin{align*}
+    &f_{n\text{ дБ}}=100\text{ кГц}:\ A_{n\text{ дБ}}=12.041278\text{ дБ},\ \varphi_{n\text{ дБ}}=2.728094^{\circ};\\
+    &f_{n-3\text{ дБ}}=4.0088442 \text{ кГц}:\ A_{n-3\text{ дБ}}=9.0426662\text{ дБ},\ \varphi_{n-3\text{ дБ}}=74.15903^{\circ};
+    \end{align*}
+    Имеем
+    $$
+    \Delta A=2.9986118\text{ дБ},\ f_{n-3\text{ дБ}}=4.0088442\text{ кГц}\approx f_\text{ср}^*=4\text{ кГц};
+    $$
+    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной (см. $f_\text{ср}^*$ в табл. \ref{sec:hpsk}).
+
+
+    \subsection{ПФ многопетлевая ОС}
+    Построим схему одноименного фильтра в LTspice
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme4.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема ПФ с многопетлевой обратной связью}
+        \label{fig:scheme4}
+    \end{figure}
+
+
+    \subsection{ЛАФЧХ характеристика ПФ многопетлевая ОС}
+    Аналогично найдем ЛАФЧХ характеристику фильтра
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{4task_lapfr.png}
+        \captionsetup{skip=0pt}
+        \caption{ЛАФЧХ характеристика ПФ многопетлевая ОС}
+        \label{fig:4task_lapfr}
+    \end{figure}
+    \noindent Курсором измерим вершину <<горы>> и значения слева и справа от нее
+    \begin{align*}
+    &f_{n\text{ дБ}}=9.9797335\text{ кГц}:\ A_{n\text{ дБ}}=13.969476\text{ дБ},\ \varphi_{n\text{ дБ}}=-179.59242^{\circ};\\
+    &f_{n-3\text{ дБ сл}}=7.4515513 \text{ кГц}:\ A_{n-3\text{ дБ сл}}=10.982289\text{ дБ},\ \varphi_{n-3\text{ дБ сл}}=-135.16323^{\circ};\\
+    &f_{n-3\text{ дБ спр}}=13.474586 \text{ кГц}:\ A_{n-3\text{ дБ спр}}=10.926412\text{ дБ},\ \varphi_{n-3\text{ дБ спр}}=-225.242^{\circ};
+    \end{align*}
+    Имеем
+    $$
+    \Delta A_\text{сл}=A_{n\text{ дБ}}-A_{n-3\text{ дБ сл}}=2.987187\text{ дБ},
+    $$
+    $$
+    \Delta A_\text{спр}=A_{n\text{ дБ}}-A_{n-3\text{ дБ спр}}=3.043064\text{ дБ};
+    $$
+    $$
+    f_{n\text{ дБ}}=9.9797335\text{ кГц}\approx f_\text{ср}^*=10\text{ кГц},
+    $$
+    $$
+    \Delta f_{n-3\text{ дБ}}=f_{n-3\text{ дБ спр}}-f_{n-3\text{ дБ сл}}=6.0230347\text{ кГц}\approx \Delta f^*=6\text{ кГц};
+    $$
+    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной (см. $f_\text{ср}^*,\Delta f^*$ в табл. \ref{sec:strip_multi}).
+
+
+    \subsection{Режекторный фильтр}
+    Построим схему одноименного фильтра в LTspice
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.22]{scheme5.png}
+        \captionsetup{skip=0pt}
+        \caption{Схема РФ}
+        \label{fig:scheme5}
+    \end{figure}
+
+
+    \subsection{ЛАФЧХ характеристика РФ}
+    Аналогично найдем ЛАФЧХ характеристику фильтра
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.46]{5task_lapfr.png}
+        \captionsetup{skip=0pt}
+        \caption{ЛАФЧХ характеристика РФ}
+        \label{fig:5task_lapfr}
+    \end{figure}
+    \noindent Курсором измерим низину <<ямы>> и значения слева и справа от нее
+    \begin{align*}
+        &f_{n\text{ дБ}}=20.061636\text{ кГц}:\ A_{n\text{ дБ}}=-9.5470452\text{ дБ},\ \varphi_{n\text{ дБ}}=0.25264918^{\circ};\\
+        &f_{n-3\text{ дБ сл}}=11.587212 \text{ кГц}:\ A_{n-3\text{ дБ сл}}=-6.4971049\text{ дБ},\ \varphi_{n-3\text{ дБ сл}}=-28.006004^{\circ};\\
+        &f_{n-3\text{ дБ спр}}=34.454665 \text{ кГц}:\ A_{n-3\text{ дБ спр}}=-6.5038859\text{ дБ},\ \varphi_{n-3\text{ дБ спр}}=27.939365^{\circ};
+    \end{align*}
+    Имеем
+    $$
+    \Delta A_\text{сл}=|A_{n\text{ дБ}}-A_{n-3\text{ дБ сл}}|=3.0499403\text{ дБ},
+    $$
+    $$
+    \Delta A_\text{спр}=|A_{n\text{ дБ}}-A_{n-3\text{ дБ спр}}|=3.0431593\text{ дБ};
+    $$
+    $$
+    f_{n\text{ дБ}}=20.061636\text{ кГц}\approx f_\text{ср}^*=20\text{ кГц},
+    $$
+    $$
+    \Delta f_{n-3\text{ дБ}}=f_{n-3\text{ дБ спр}}-f_{n-3\text{ дБ сл}}=22.867453\text{ кГц}\approx \Delta f^*=20\text{ кГц};
+    $$
+    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной (см. $f_\text{ср}^*,\Delta f^*$ в табл. \ref{sec:rectoring}).
+
+
+    \section{Вывод}
+    В ходе выполнения работы были рассмотрены различные виды
+    активных фильтров первого и второго порядков. Были построены
+    схемы и промоделированы ЛАФЧХ для каждого случая. Результаты
+    подтверждают корректность расчетов.
 \end{document}
