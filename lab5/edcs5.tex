@@ -104,6 +104,12 @@
         \caption{Схема ФНЧ инвертирующий}
         \label{fig:null_scheme1}
     \end{figure}
+    $$
+    K_U=-\dfrac{R_2}{R_1}=-\dfrac{2650}{442.1}\approx-6,
+    $$
+    $$
+    f_\text{ср}=\dfrac{1}{2\pi R_2C_1}=\dfrac{1}{2\pi\cdot2650\cdot10^{-8}}\approx6\text{ кГц};
+    $$
 
 
     \subsubsection{ФВЧ неинвертирующий} \label{sec:hpninv}
@@ -124,6 +130,12 @@
         \caption{Схема ФВЧ неинвертирующий}
         \label{fig:null_scheme2}
     \end{figure}
+    $$
+    K_U=1+\dfrac{R_3}{R_2}=1+\dfrac{4000}{1000}=5,
+    $$
+    $$
+    f_\text{ср}=\dfrac{1}{2\pi R_1C_1}=\dfrac{1}{2\pi\cdot3180\cdot10^{-8}}\approx5\text{ кГц};
+    $$
 
 
     \subsection{Активные фильтры второго порядка}
@@ -145,6 +157,12 @@
         \caption{Схема ФВЧ Салена-Ки}
         \label{fig:null_scheme3}
     \end{figure}
+    $$
+    K_U=1+\dfrac{R_4}{R_3}=1+\dfrac{3}{1}=4,
+    $$
+    $$
+    f_\text{ср}=\dfrac{1}{2\pi\sqrt{\left( R_1R_2C_1C_2 \right)}}=\dfrac{1}{2\pi\sqrt{\left( 292.2\cdot876.6\cdot10^{-14} \right)}}\approx3.145\text{ кГц};
+    $$
 
 
     \subsubsection{ПФ многопетлевая ОС} \label{sec:strip_multi}
@@ -165,9 +183,15 @@
         \caption{Схема ПФ с многопетлевой обратной связью}
         \label{fig:null_scheme4}
     \end{figure}
+    $$
+    K_U=\dfrac{R_3}{R_1}\cdot\dfrac{C_2}{C_1+C_2}=\dfrac{5300}{530.5}\cdot\dfrac{10^{-8}}{2\cdot10^{-8}}=\dfrac{R_3}{2R_1}\approx5,
+    $$
+    $$
+    f_\text{ср}=\dfrac{1}{2\pi}\sqrt{\dfrac{1}{R_3C_1C_2}\left( \dfrac{1}{R_1}+\dfrac{1}{R_2} \right)}=\dfrac{1}{2\pi}\sqrt{\dfrac{1}{5300\cdot10^{-16}}\left( \dfrac{1}{530.5}+\dfrac{1}{4780} \right)}\approx10\text{ кГц};
+    $$
 
 
-    \subsubsection{Режекторный фильтр} \label{sec:rectoring}
+    \subsubsection{Режекторный фильтр с Т-мостом} \label{sec:rectoring}
     Исходные данные для режекторного фильтра
     \begin{center}
         \begin{tabular}{ | m{3.5em} | m{3.5em}| m{3.5em} | m{4em} | m{4em} | m{3.5em} | m{4em} | m{4em} |} 
@@ -191,9 +215,15 @@
         \centering
         \includegraphics{rectoring.png}
         \captionsetup{skip=0pt}
-        \caption{Схема РФ}
+        \caption{Схема РФ с Т-мостом}
         \label{fig:null_scheme5}
     \end{figure}
+    $$
+    K_U=1+\dfrac{R_5}{R_4}=1+\dfrac{0}{\infty}=1,
+    $$
+    $$
+    f_\text{ср}=\dfrac{1}{2\pi R_1C_1}=\dfrac{1}{2\pi\cdot795.8\cdot10^{-8}}\approx20\text{ кГц};
+    $$
 
 
     \section{Исследование активных фильтров первого порядка}
@@ -227,7 +257,11 @@
     $$
     \Delta A=3.006038\text{ дБ},\ f_{n-3\text{ дБ}}=5.9961892\text{ кГц}\approx f_\text{ср}^*=6\text{ кГц};
     $$
-    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной (см. $f_\text{ср}^*$ в табл. \ref{sec:lpinv}).
+    То есть полоса пропускания
+    $$
+    0\leq f\leq 5.9961892\text{ кГц}
+    $$
+    Экспериментально полученная полоса пропускания фильтра совпадает с теоретиески расчитанной (см. $f_\text{ср}^*$ в табл. \ref{sec:lpinv}).
 
 
     \subsection{Схема неинвертирующего ФВЧ}
@@ -259,7 +293,11 @@
     $$
     \Delta A=2.987628\text{ дБ},\ f_{n-3\text{ дБ}}=5.0300312\text{ кГц}\approx f_\text{ср}^*=5\text{ кГц};
     $$
-    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной (см. $f_\text{ср}^*$ в табл. \ref{sec:hpninv}).
+    То есть полоса пропускания
+    $$
+    5.0300312\leq f\leq100\text{ кГц}
+    $$
+    Экспериментально полученная полоса пропускания фильтра совпадает с теоретиески расчитанной (см. $f_\text{ср}^*$ в табл. \ref{sec:hpninv}).
 
 
     \section{Исследование активных фильтров второго порядка}
@@ -292,7 +330,11 @@
     $$
     \Delta A=2.9986118\text{ дБ},\ f_{n-3\text{ дБ}}=4.0088442\text{ кГц}\approx f_\text{ср}^*=4\text{ кГц};
     $$
-    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной (см. $f_\text{ср}^*$ в табл. \ref{sec:hpsk}).
+    То есть полоса пропускания
+    $$
+    4.0088442\leq f\leq100\text{ кГц}
+    $$
+    Экспериментально полученная полоса пропускания фильтра совпадает с теоретиески расчитанной (см. $f_\text{ср}^*$ в табл. \ref{sec:hpsk}).
 
 
     \subsection{ПФ многопетлевая ОС}
@@ -334,7 +376,11 @@
     $$
     \Delta f_{n-3\text{ дБ}}=f_{n-3\text{ дБ спр}}-f_{n-3\text{ дБ сл}}=6.0230347\text{ кГц}\approx \Delta f^*=6\text{ кГц};
     $$
-    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной (см. $f_\text{ср}^*,\Delta f^*$ в табл. \ref{sec:strip_multi}).
+    То есть полоса пропускания
+    $$
+    7.4515513\leq f\leq13.474586\text{ кГц},\ f_\text{ср}=9.9797335\text{ кГц}, \Delta f=6.0230347\text{ кГц};
+    $$
+    Экспериментально полученная полоса пропускания фильтра совпадает с теоретиески расчитанной (см. $f_\text{ср}^*,\Delta f^*$ в табл. \ref{sec:strip_multi}).
 
 
     \subsection{Режекторный фильтр}
@@ -343,18 +389,18 @@
         \centering
         \includegraphics[scale=0.22]{scheme5.png}
         \captionsetup{skip=0pt}
-        \caption{Схема РФ}
+        \caption{Схема РФ с Т-мостом}
         \label{fig:scheme5}
     \end{figure}
 
 
-    \subsection{ЛАФЧХ характеристика РФ}
+    \subsection{ЛАФЧХ характеристика РФ с Т-мостом}
     Аналогично найдем ЛАФЧХ характеристику фильтра
     \begin{figure}[H]
         \centering
         \includegraphics[scale=0.46]{5task_lapfr.png}
         \captionsetup{skip=0pt}
-        \caption{ЛАФЧХ характеристика РФ}
+        \caption{ЛАФЧХ характеристика РФ с Т-мостом}
         \label{fig:5task_lapfr}
     \end{figure}
     \noindent Курсором измерим низину <<ямы>> и значения слева и справа от нее
@@ -376,7 +422,14 @@
     $$
     \Delta f_{n-3\text{ дБ}}=f_{n-3\text{ дБ спр}}-f_{n-3\text{ дБ сл}}=22.867453\text{ кГц}\approx \Delta f^*=20\text{ кГц};
     $$
-    Экспериментально полученная полоса пропускания фильтра равна теоретиески расчитанной (см. $f_\text{ср}^*,\Delta f^*$ в табл. \ref{sec:rectoring}).
+    То есть полоса пропускания
+    $$
+    \begin{cases}
+        0\leq f<11.587212 \text{ кГц},\\
+        34.454665<f\leq100\text{ кГц},
+    \end{cases} f_\text{ср}=20.061636\text{ кГц},\ \Delta f=22.867453\text{ кГц};
+    $$
+    Экспериментально полученная полоса пропускания фильтра совпадает с теоретиески расчитанной (см. $f_\text{ср}^*,\Delta f^*$ в табл. \ref{sec:rectoring}).
 
 
     \section{Вывод}
